@@ -20,13 +20,35 @@ a {
 
 .content {
   padding: 7rem 0; }
+  
+  #userPhoto{
+    width: 96px;
+    height: 96px;
+    display: block;
+    margin: 35px auto 20px;
+    border-radius: 50%;
+}
 
-h2 {
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #FB667A;
+#userName{
+  color: #bbb;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  display: block;
+  font-family: var(--font);
+  width: 100%;
+  text-align: center;
   text-decoration: none;
 }
+h2 {
+  color: #FB667A;
+  font-weight: 600;
+  line-height: 0.25;
+  display: block;
+  font-family: var(--font);
+  width: 100%;
+  text-align: center;
+  text-decoration: none;}
 
 .Anu-table {
   min-width: 900px; }

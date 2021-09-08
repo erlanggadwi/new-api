@@ -2,7 +2,7 @@ const express = require('express')
 var router = express.Router();
 
 //scraper
-const { igDownload, tiktok, mediafireDl } = require('../scraper/index') 
+const { igDownload, ytPlayMp4, ytPlayMp3, igstory, tiktok, mediafireDl } = require('../scraper/index') 
 
 router.get('/tiktok', async(req, res) => {
 	var link = req.query.link
@@ -26,6 +26,39 @@ router.get('/igdl', async(req, res) => {
 		res.json({ message: 'Ups, error' })
 	}
 })
+router.get('/igstory', async (req, res, next) => {
+	username = req.query.username
+	 igstory(username)
+	 .then((data) => {
+	   res.json(data)
+  })
+  })
+  
+  router.get("/playmp3", async(req, res, next) => {
+    const query = req.query.query;
+    if(!query) return res.json(loghandler.notquery)
+    ytPlayMp3(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });   
+});
+
+router.get("/playmp4", async(req, res, next) => {
+    const query = req.query.query;    
+    if(!query) return res.json(loghandler.notquery)
+    ytPlayMp4(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
+
+
 router.get('/mediafireDl', async(req, res) => {
 	var link = req.query.link
 	if (!link) return res.json({ message: 'masukan parameter Link' })
