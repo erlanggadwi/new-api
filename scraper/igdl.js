@@ -1,8 +1,8 @@
 
 const axios_1 = __importDefault(require("axios"));
 const cheerio_1 = __importDefault(require("cheerio"));
-const yt = require("ytdl-core")
-const yts = require("yt-search")
+const yt1 = __importDefault(require("ytdl-core"));
+const yts = __importDefault(require("yt-search"));
 
 function igDownload(Link) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -85,7 +85,7 @@ function igstory(username){
 function ytPlayMp3(query) {
     return new Promise((resolve, reject) => {
         try {
-            const search = yts(query)
+            const search = yts.default(query)
             .then((data) => {
                 const url = []
                 const pormat = data.all
@@ -95,8 +95,8 @@ function ytPlayMp3(query) {
                         url.push(dapet.url)
                     }
                 }
-                const id = yt.getVideoID(url[0])
-                const yutub = yt.getInfo(`https://www.youtube.com/watch?v=${id}`)
+                const id = yt1.default.getVideoID(url[0])
+                const yutub = yt1.default.getInfo(`https://www.youtube.com/watch?v=${id}`)
                 .then((data) => {
                     let pormat = data.formats
                     let audio = []
@@ -138,7 +138,7 @@ function ytPlayMp3(query) {
  function ytPlayMp4(query) {
     return new Promise((resolve, reject) => {
         try {
-            const search = yts(query)
+            const search = yts.default(query)
             .then((data) => {
                 const url = []
                 const pormat = data.all
@@ -148,8 +148,8 @@ function ytPlayMp3(query) {
                         url.push(dapet.url)
                     }
                 }
-                const id = yt.getVideoID(url[0])
-                const yutub = yt.getInfo(`https://www.youtube.com/watch?v=${id}`)
+                const id = yt1.default.getVideoID(url[0])
+                const yutub = yt1.default.getInfo(`https://www.youtube.com/watch?v=${id}`)
                 .then((data) => {
                     let pormat = data.formats
                     let video = []
@@ -183,7 +183,7 @@ function ytPlayMp3(query) {
         console.log(error)
     })
 }
-module.exports = igstory,
-module.exports = ytPlayMp3,
-module.exports = ytPlayMp4,
+module.exports = igstory
+module.exports = ytPlayMp3
+module.exports = ytPlayMp4
 module.exports = igDownload

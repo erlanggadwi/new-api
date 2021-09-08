@@ -27,20 +27,16 @@ router.get('/igdl', async(req, res) => {
 	}
 })
 router.get('/igstory', async (req, res, next) => {
-	var username = req.query.username
-	if (!username) return res.json({ message: 'masukan parameter Link' })
-	//var hasil2 = await igstory(username)
-	try {
-		res.json(data)
-	} catch(err) {
-		console.log(err)
-		res.json({ message: 'Ups, error' })
-	}
+	username = req.query.username
+	await igstory(username)
+	.then((data) => {
+	  res.json(data)
+	})
 })
   router.get("/playmp3", async(req, res, next) => {
     const query = req.query.query;
     if(!query) return res.json(loghandler.notquery)
-    ytPlayMp3(query)
+    await ytPlayMp3(query)
         .then((result) => {
             res.json(result);
         })
@@ -52,7 +48,7 @@ router.get('/igstory', async (req, res, next) => {
 router.get("/playmp4", async(req, res, next) => {
     const query = req.query.query;    
     if(!query) return res.json(loghandler.notquery)
-    ytPlayMp4(query)
+    await ytPlayMp4(query)
         .then((result) => {
             res.json(result);
         })
