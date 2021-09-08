@@ -2,6 +2,7 @@
 const axios_1 = __importDefault(require("axios"));
 const cheerio_1 = __importDefault(require("cheerio"));
 const form_data_1 = __importDefault(require("form-data"));
+const cheerio = require("cheerio")
 const yt = require("ytdl-core")
 const yts = require("yt-search")
 
