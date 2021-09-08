@@ -1,7 +1,5 @@
 
-const axios_1 = __importDefault(require("axios"));
-const cheerio_1 = __importDefault(require("cheerio"));
-const form_data_1 = __importDefault(require("form-data"));
+const axios_1 = require("axios")
 const cheerio = require("cheerio")
 const yt = require("ytdl-core")
 const yts = require("yt-search")
@@ -25,7 +23,7 @@ function igDownload(Link) {
                     "cookie": "_ga=GA1.2.1695343126.1621491858; _gid=GA1.2.28178724.1621491859; __gads=ID=8f9d3ef930e9a07b-2258e672bec80081:T=1621491859:RT=1621491859:S=ALNI_MbqLxhztDiYZttJFX2SkvYei6uGOw; __atuvc=3%7C20; __atuvs=60a6eb107a17dd75000; __atssc=google%3B2; _gat_gtag_UA_142480840_1=1"
                 },
             }).then((res) => __awaiter(this, void 0, void 0, function* () {
-                const $ = cheerio_1.default.load(res.data);
+                const $ = cheerio.default.load(res.data);
                 const url = $('#downloadBox').find('a').attr('href');
                 yield axios_1.default(Link, {
                     method: "GET",
@@ -38,7 +36,7 @@ function igDownload(Link) {
                         "cookie": "ig_did=08A3C465-7D43-4D8A-806A-88F98384E63B; ig_nrcb=1; mid=X_ipMwALAAFgQ7AftbrkhIDIdXJ8; fbm_124024574287414=base_domain=.instagram.com; shbid=17905; ds_user_id=14221286336; csrftoken=fXHAj5U3mcJihQEyVXfyCzcg46lHx7QD; sessionid=14221286336%3A5n4czHpQ0GRzlq%3A28; shbts=1621491639.7673564; rur=FTW"
                     }
                 }).then(respon => {
-                    const ch = cheerio_1.default.load(respon.data);
+                    const ch = cheerio.default.load(respon.data);
                     const title = ch('title').text().trim();
                     const result = {
                             link: url,
