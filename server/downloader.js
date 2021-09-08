@@ -27,13 +27,16 @@ router.get('/igdl', async(req, res) => {
 	}
 })
 router.get('/igstory', async (req, res, next) => {
-	username = req.query.username
-	 igstory(username)
-	 .then((data) => {
-	   res.json(data)
-  })
-  })
-  
+	var username = req.query.username
+	if (!username) return res.json({ message: 'masukan parameter Link' })
+	//var hasil2 = await igstory(username)
+	try {
+		res.json(data)
+	} catch(err) {
+		console.log(err)
+		res.json({ message: 'Ups, error' })
+	}
+})
   router.get("/playmp3", async(req, res, next) => {
     const query = req.query.query;
     if(!query) return res.json(loghandler.notquery)
