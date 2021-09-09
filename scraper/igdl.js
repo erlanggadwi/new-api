@@ -50,7 +50,7 @@ function igDownload(Link) {
 }
 function igstory(username){
 	return new Promise(async(resolve, reject) => {
-		axios_1.default.request({
+		yield axios_1.default.request({
 			url: 'https://www.instagramsave.com/instagram-story-downloader.php',
 			method: 'GET',
 			headers:{
@@ -74,7 +74,7 @@ function igstory(username){
 					'token': token
 				}
 			}
-            axios_1.default.post('https://www.instagramsave.com/system/action.php',qs.stringify(config.data), { headers: config.headers })
+            yield axios_1.default.post('https://www.instagramsave.com/system/action.php',qs.stringify(config.data), { headers: config.headers })
 		.then(({ data }) => {
 		resolve(data)
 		   })
@@ -183,7 +183,7 @@ function ytPlayMp3(query) {
         console.log(error)
     })
 }
-module.exports = igstory
-module.exports = ytPlayMp3
-module.exports = ytPlayMp4
+module.exports = igstory,
+module.exports = ytPlayMp3,
+module.exports = ytPlayMp4,
 module.exports = igDownload

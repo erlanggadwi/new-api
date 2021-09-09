@@ -34,28 +34,30 @@ router.get('/igstory', async (req, res) => {
 	})
 })
 
-router.get('/playmp3', async(req, res) => {
+router.get("/yt/playmp3", async(req, res, next) => {
     const query = req.query.query;
     if(!query) return res.json(loghandler.notquery)
-	var hasil2 = await ytPlayMp3(query)
-	try {
-		res.json(hasil2)
-	} catch(err) {
-		console.log(err)
-		res.json({ message: 'Ups, error' })
-	}
-})
-router.get('/playmp4', async(req, res) => {
-    const query = req.query.query;
+    ytPlayMp3(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
+
+router.get("/yt/playmp4", async(req, res, next) => {
+    const query = req.query.query;    
     if(!query) return res.json(loghandler.notquery)
-	var hasil3 = await ytPlayMp4(query)
-	try {
-		res.json(hasil3)
-	} catch(err) {
-		console.log(err)
-		res.json({ message: 'Ups, error' })
-	}
-})
+    ytPlayMp4(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
+
 
 router.get('/mediafireDl', async(req, res) => {
 	var link = req.query.link
