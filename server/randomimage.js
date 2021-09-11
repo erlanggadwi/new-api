@@ -54,10 +54,12 @@ router.get('/emoji2png', async(req, res, next) => {
 	  emoji.get(Emoji)
 	  .then(img_emoji => {
 		const result = {
+		  result: {
 		  status: true,
 		  code: 200,
 		  creator: 'erdwpe',
 		  result: img_emoji.images[0].url
+		}
 		}
 		res.json(result)
 	  })

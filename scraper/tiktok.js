@@ -33,6 +33,7 @@ async function tiktok (Url) {
 				const result = {
 					status: res.status,
 					result: {
+						message: 'BY : ERDWPE',
 						nowatermark: ch('#results-list > div:nth-child(2)').find('div.download > a').attr('href'),
 						watermark: ch('#results-list > div:nth-child(3)').find('div.download > a').attr('href'),
 						audio: SSS('#download-track-btn').attr('href')

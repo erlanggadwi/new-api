@@ -39,9 +39,11 @@ function igDownload(Link) {
                     const ch = cheerio_1.default.load(respon.data);
                     const title = ch('title').text().trim();
                     const result = {
+                            result: {
                             link: url,
                             desc: title,
                         }
+                    }
                     resolve(result);
                 }).catch(reject);
             }));

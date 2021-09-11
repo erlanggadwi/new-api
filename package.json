@@ -24,6 +24,7 @@
     "morgan": "^1.10.0",
     "node-fetch": "^3.0.0",
     "node-fetch-cookies": "^2.0.3",
+    "serve-favicon": "^2.5.0",
     "ssl-express-www": "^3.0.8",
     "yt-search": "^2.7.6",
     "ytdl-core": "^4.5.0"

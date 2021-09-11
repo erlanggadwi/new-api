@@ -1,3 +1,5 @@
+__path = process.cwd();
+var favicon = require('serve-favicon');
 const express = require('express'),
     secure = require('ssl-express-www')
 const PORT = process.env.PORT || 8080;
@@ -15,6 +17,7 @@ var main = require('./main');
 
 app.use('/downloader', downloader)
 app.use('/search', search)
+app.use(favicon(__path +'/views/anu.ico'))
 app.use('/randomimg', randomimg)
 app.use('/', main)
 
