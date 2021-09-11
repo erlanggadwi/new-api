@@ -1,9 +1,7 @@
 const express = require('express')
 var router = express.Router();
-const hx = require('hxz-api');
-
 //scraper
-const { pinterest } = require('../scraper/index') 
+const { pinterest, covid } = require('../scraper/index') 
 
 router.get('/google', async(req, res) => {
 	var query = req.query.query
@@ -22,7 +20,7 @@ router.get('/pinterest', async(req, res) => {
 router.get('/covid', async(req, res, next) => {
 	//const link = req.query.link;
 	//if(!link) return res.json(loghandler.notlink)		
-	hx.covid()			
+	covid()			
 	.then(result => {			
 	res.json(result)
 			  })
