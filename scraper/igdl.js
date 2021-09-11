@@ -50,7 +50,7 @@ function igDownload(Link) {
 }
 function igstory(username){
 	return new Promise(async(resolve, reject) => {
-		yield axios_1.default.request({
+		axios_1.default.request({
 			url: 'https://www.instagramsave.com/instagram-story-downloader.php',
 			method: 'GET',
 			headers:{
@@ -74,7 +74,7 @@ function igstory(username){
 					'token': token
 				}
 			}
-            yield axios_1.default.post('https://www.instagramsave.com/system/action.php',qs.stringify(config.data), { headers: config.headers })
+            axios_1.default.post('https://www.instagramsave.com/system/action.php',qs.stringify(config.data), { headers: config.headers })
 		.then(({ data }) => {
 		resolve(data)
 		   })

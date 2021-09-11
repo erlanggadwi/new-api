@@ -18,7 +18,7 @@ app.use('/search', search)
 app.use('/randomimg', randomimg)
 app.use('/', main)
 
-
+app.set('json spaces', 2);
 app.listen(PORT, () => {
     console.log(`Server Run on port ${PORT}`)
 });

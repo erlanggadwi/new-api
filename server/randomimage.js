@@ -3,6 +3,9 @@ var router = express.Router();
 const { getBuffer } = require('../lib/function')
 const axios = require('axios')
 const fs = require('fs')
+var { EmojiAPI } = require("emoji-api");
+var emoji = new EmojiAPI();
+const hx = require('hxz-api');
 __path = process.cwd()
 
 async function sleep(ms) {
@@ -45,6 +48,24 @@ router.get('/milf', async(req, res) => {
     await sleep(3000)
     await fs.unlinkSync(__path + '/tmp/waifu.png')
 })
+router.get('/emoji2png', async(req, res, next) => {
+	const Emoji = req.query.text;
+	if(!Emoji) return res.json(loghandler.nottext)
+	  emoji.get(Emoji)
+	  .then(img_emoji => {
+		const result = {
+		  status: true,
+		  code: 200,
+		  creator: 'erdwpe',
+		  result: img_emoji.images[0].url
+		}
+		res.json(result)
+	  })
+	
+	  .catch((err) => {
+		res.json(loghandler.error)
+	  })
+  });
 router.get('/cosplay', async(req, res) => {
 	var waif = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/cosplay.json`)).data
 	const result = waif[Math.floor(Math.random() * (waif.length))]
