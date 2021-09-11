@@ -115,6 +115,7 @@ function ytPlayMp3(query) {
                     const views = data.player_response.microformat.playerMicroformatRenderer.viewCount
                     const published = data.player_response.microformat.playerMicroformatRenderer.publishDate
                     const result = {
+                    result: {
                     status: true,
                     code: 200,
                     creator: '@erdwpebot',
@@ -125,6 +126,7 @@ function ytPlayMp3(query) {
                     views: views,
                     url: audio[0]
                     }
+                }
                     return(result)
                 })
                 return(yutub)
@@ -167,6 +169,7 @@ function ytPlayMp3(query) {
                     const views = data.player_response.microformat.playerMicroformatRenderer.viewCount
                     const published = data.player_response.microformat.playerMicroformatRenderer.publishDate
                     const result = {
+                        result: {
                     title: title,
                     thumb: thumb,
                     channel: channel,
@@ -174,6 +177,7 @@ function ytPlayMp3(query) {
                     views: views,
                     url: video[0]
                     }
+                }
                     return(result)
                 })
                 return(yutub)
