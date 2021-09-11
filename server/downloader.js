@@ -34,7 +34,7 @@ router.get('/igstory', async(req, res, next) => {
 	hx.igstory(username)
 		.then(data => {
 		res.json(data)
-	  });
+	  })
 	});
 router.get('/igstalk', async(req, res, next) => {
 	const username = req.query.username;
@@ -42,7 +42,7 @@ router.get('/igstalk', async(req, res, next) => {
 	hx.igstalk(username)
 		.then(data => {
 		res.json(data)
-	  });
+	  })
 	});
 	router.get('/youtubedl', async(req, res, next) => {
 	const link = req.query.link;
@@ -50,7 +50,7 @@ router.get('/igstalk', async(req, res, next) => {
 	hx.youtube(link)			
 	.then(result => {			
 	res.json(result)
-			  });
+			  })
 			});
 router.get('/mediafireDl', async(req, res) => {
 	var link = req.query.link

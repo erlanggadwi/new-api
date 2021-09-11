@@ -25,6 +25,6 @@ router.get('/covid', async(req, res, next) => {
 	hx.covid()			
 	.then(result => {			
 	res.json(result)
-			  });
+			  })
 			});		
 module.exports = router
