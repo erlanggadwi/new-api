@@ -30,45 +30,28 @@ router.get('/igdl', async(req, res) => {
 
 router.get('/igstory', async(req, res, next) => {
 	const username = req.query.username;
-	if(!username) return res.json(loghandler.notusername)
+	if(!username) return res.json({ message: 'masukan parameter Username' })
 	hx.igstory(username)
 		.then(data => {
 		res.json(data)
 	  });
 	});
-	router.get('/igstalk', async(req, res, next) => {
-		const username = req.query.username;
-		if(!username) return res.json(loghandler.notusername)
-		hx.igstalk(username)
-			.then(data => {
-			res.json(data)
-		  });
-		});
-router.get("/yt/playmp3", async(req, res, next) => {
-    const query = req.query.query;
-    if(!query) return res.json(loghandler.notquery)
-    ytPlayMp3(query)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((error) => {
-            res.json(error);
-        });
-});
-
-router.get("/yt/playmp4", async(req, res, next) => {
-    const query = req.query.query;    
-    if(!query) return res.json(loghandler.notquery)
-    ytPlayMp4(query)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((error) => {
-            res.json(error);
-        });
-});
-
-
+router.get('/igstalk', async(req, res, next) => {
+	const username = req.query.username;
+	if(!username) return res.json({ message: 'masukan parameter Username' })
+	hx.igstalk(username)
+		.then(data => {
+		res.json(data)
+	  });
+	});
+	router.get('/youtubedl', async(req, res, next) => {
+	const link = req.query.link;
+	if(!link) return res.json({ message: 'masukan parameter Link' })
+	hx.youtube(link)			
+	.then(result => {			
+	res.json(result)
+			  });
+			});
 router.get('/mediafireDl', async(req, res) => {
 	var link = req.query.link
 	if (!link) return res.json({ message: 'masukan parameter Link' })
