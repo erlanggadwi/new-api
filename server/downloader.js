@@ -1,5 +1,6 @@
 const express = require('express')
 var router = express.Router();
+const hx = require('hxz-api');
 //scraper
 const { igDownload, ytPlayMp4, ytPlayMp3, igstory, tiktok, mediafireDl } = require('../scraper/index'); 
 const { data } = require('cheerio/lib/api/attributes');
