@@ -1,7 +1,7 @@
 const express = require('express')
 var router = express.Router();
 //scraper
-const { pinterest, covid } = require('../scraper/index') 
+const { pinterest, covid } = require('../scraper/pinterest') 
 
 router.get('/google', async(req, res) => {
 	var query = req.query.query

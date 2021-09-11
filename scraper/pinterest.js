@@ -64,5 +64,7 @@ function covid(){
 		.catch(reject)
 	})
 }
-module.exports = pinterest,
-module.exports = covid
+module.exports = {
+	pinterest,
+	covid
+				}

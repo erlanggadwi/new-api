@@ -185,7 +185,10 @@ function ytPlayMp3(query) {
         console.log(error)
     })
 }
-module.exports = igstory,
-module.exports = ytPlayMp3,
-module.exports = ytPlayMp4,
-module.exports = igDownload
+
+module.exports = {
+	igstory,
+	ytPlayMp3,
+    ytPlayMp4,
+    igDownload
+				}

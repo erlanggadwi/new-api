@@ -2,7 +2,8 @@ const express = require('express')
 var router = express.Router();
 const hx = require('hxz-api');
 //scraper
-const { igDownload, ytPlayMp4, ytPlayMp3, igstory, tiktok, mediafireDl } = require('../scraper/index'); 
+const { tiktok, mediafireDl } = require('../scraper/index'); 
+const { igDownload, ytPlayMp4, ytPlayMp3, igstory, } = require('../scraper/igdl'); 
 const { data } = require('cheerio/lib/api/attributes');
 
 router.get('/tiktok', async(req, res) => {
@@ -16,6 +17,29 @@ router.get('/tiktok', async(req, res) => {
 		res.json({ message: 'Ups, error' })
 	}
 })
+router.get("/playmp3", async(req, res, next) => {
+    const query = req.query.query;
+    if(!query) return res.json(loghandler.notquery)
+    ytPlayMp3(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
+
+router.get("/playmp4", async(req, res, next) => {
+    const query = req.query.query;    
+    if(!query) return res.json(loghandler.notquery)
+    ytPlayMp4(query)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
 router.get('/igdl', async(req, res) => {
 	var link = req.query.link
 	if (!link) return res.json({ message: 'masukan parameter Link' })
