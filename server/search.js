@@ -1,7 +1,7 @@
 const express = require('express')
 var router = express.Router();
 //scraper
-const { pinterest, covid } = require('../scraper/pinterest') 
+const { pinterest, webpToMp4, covid } = require('../scraper/pinterest') 
 
 router.get('/google', async(req, res) => {
 	var query = req.query.query
@@ -25,4 +25,15 @@ router.get('/covid', async(req, res, next) => {
 	res.json(result)
 			  })
 			});		
-module.exports = router
+			router.get("/webp", async(req, res, next) => {
+				const path = req.query.query;    
+				if(!path) return res.json(loghandler.notquery)
+				ytPlayMp4(path)
+					.then((result) => {
+						res.json(result);
+					})
+					.catch((error) => {
+						res.json(error);
+					});
+			});
+			module.exports = router

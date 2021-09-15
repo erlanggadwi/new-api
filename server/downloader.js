@@ -3,7 +3,7 @@ var router = express.Router();
 const hx = require('hxz-api');
 //scraper
 const { tiktok, mediafireDl } = require('../scraper/index'); 
-const { igDownload, ytPlayMp4, ytPlayMp3, igstory, } = require('../scraper/igdl'); 
+const { igDownload, ytPlayMp4, ytPlayMp3, igstory, igStalk } = require('../scraper/igdl'); 
 const { data } = require('cheerio/lib/api/attributes');
 
 router.get('/tiktok', async(req, res) => {
@@ -60,14 +60,14 @@ router.get('/igstory', async(req, res, next) => {
 		res.json(data)
 	  })
 	});
-router.get('/igstalk', async(req, res, next) => {
-	const username = req.query.username;
-	if(!username) return res.json({ message: 'masukan parameter Username' })
-	hx.igstalk(username)
-		.then(data => {
-		res.json(data)
-	  })
-	});
+	router.get('/igstalk', async(req, res, next) => {
+		const username = req.query.username;
+		if(!username) return res.json(loghandler.notusername)
+		igStalk(username)
+		  .then((data) => {
+			res.json(data)
+		  })
+	  });
 	router.get('/youtubedl', async(req, res, next) => {
 	const link = req.query.link;
 	if(!link) return res.json({ message: 'masukan parameter Link' })
