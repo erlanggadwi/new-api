@@ -201,7 +201,6 @@ function igStalk(username){
 		.then(({ data }) => {
 			const user = data.graphql.user
 			let result = {
-                result: {
 				message: 'By Erdwpe',
                 id: user.id,
                 biography: user.biography,
@@ -219,7 +218,6 @@ function igStalk(username){
                 username: user.username,
                 postsCount: user.edge_owner_to_timeline_media.count
 			}
-        }
 		resolve(result)
 		})
 	.catch(reject)

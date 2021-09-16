@@ -5,18 +5,29 @@ const hx = require('hxz-api');
 const { tiktok, mediafireDl } = require('../scraper/index'); 
 const { igDownload, ytPlayMp4, ytPlayMp3, igstory, igStalk } = require('../scraper/igdl'); 
 const { data } = require('cheerio/lib/api/attributes');
-
-router.get('/tiktok', async(req, res) => {
-	var link = req.query.link
-	if (!link) return res.json({ message: 'masukan parameter Link' })
-	var hasil = await tiktok(link)
-	try {
-		res.json(hasil)
-	} catch(err) {
-		console.log(err)
-		res.json({ message: 'Ups, error' })
+/*
+* @Pesan Error
+*/
+loghandler = {
+    notparam: {
+        status: false,
+        creator: 'By Erdwpe',
+        code: 406,
+        message: 'masukan parameter apikey'
+    },
+    noturl: {
+        status: false,
+        creator: 'By Erdwpe',
+        code: 406,
+        message: 'masukan parameter url'
+    },
+    notquery: {
+        status: false,
+        creator: 'By Erdwpe',
+        code: 406,
+        message: 'masukkan parameter query'
+        }
 	}
-})
 router.get("/playmp3", async(req, res, next) => {
     const query = req.query.query;
     if(!query) return res.json(loghandler.notquery)
@@ -60,14 +71,23 @@ router.get('/igstory', async(req, res, next) => {
 		res.json(data)
 	  })
 	});
-	router.get('/igstalk', async(req, res, next) => {
-		const username = req.query.username;
-		if(!username) return res.json(loghandler.notusername)
-		igStalk(username)
-		  .then((data) => {
+	router.get('/twiter', async(req, res, next) => {
+		const link = req.query.link;
+		if(!link) return res.json(loghandler.notquery)
+		hx.igstory(link)
+			.then(data => {
 			res.json(data)
 		  })
-	  });
+		});
+router.get('/igstalk', async(req, res, next) => {
+			const username = req.query.username;
+			if(!username) return res.json(loghandler.notquery)
+			igStalk(username)
+			  .then((result) => {
+				res.json(result)
+			  })
+		  });
+		  
 	router.get('/youtubedl', async(req, res, next) => {
 	const link = req.query.link;
 	if(!link) return res.json({ message: 'masukan parameter Link' })

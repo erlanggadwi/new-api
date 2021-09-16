@@ -53,6 +53,7 @@ function covid(){
 						positif: pglo,
 						meninggal: nglo,
 						update: up.split(':')[1].split('\n')[0]
+					
 
 					}
 				}
