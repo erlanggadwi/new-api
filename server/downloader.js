@@ -40,7 +40,17 @@ router.get('/igdl', async(req, res) => {
 		res.json({ message: 'Ups, error' })
 	}
 })
-
+router.get('/tiktok', async(req, res) => {
+	var url = req.query.url
+	if (!url) return res.json({ message: 'masukan parameter Link' })
+	var hasil = await tiktok(url)
+	try {
+		res.json(hasil)
+	} catch(err) {
+		console.log(err)
+		res.json({ message: 'Ups, error' })
+	}
+})
 router.get('/igstory', async(req, res, next) => {
 	const username = req.query.username;
 	if(!username) return res.json({ message: 'masukan parameter Username' })
