@@ -3,31 +3,9 @@ var router = express.Router();
 const hx = require('hxz-api');
 //scraper
 const { tiktok, mediafireDl } = require('../scraper/index'); 
-const { igDownload, ytPlayMp4, ytPlayMp3, igstory, igStalk } = require('../scraper/igdl'); 
+const { igDownload, ytPlayMp4, ytPlayMp3, twitter, igStalk } = require('../scraper/igdl'); 
 const { data } = require('cheerio/lib/api/attributes');
-/*
-* @Pesan Error
-*/
-loghandler = {
-    notparam: {
-        status: false,
-        creator: 'By Erdwpe',
-        code: 406,
-        message: 'masukan parameter apikey'
-    },
-    noturl: {
-        status: false,
-        creator: 'By Erdwpe',
-        code: 406,
-        message: 'masukan parameter url'
-    },
-    notquery: {
-        status: false,
-        creator: 'By Erdwpe',
-        code: 406,
-        message: 'masukkan parameter query'
-        }
-	}
+
 router.get("/playmp3", async(req, res, next) => {
     const query = req.query.query;
     if(!query) return res.json(loghandler.notquery)
@@ -71,14 +49,17 @@ router.get('/igstory', async(req, res, next) => {
 		res.json(data)
 	  })
 	});
-	router.get('/twiter', async(req, res, next) => {
-		const link = req.query.link;
-		if(!link) return res.json(loghandler.notquery)
-		hx.igstory(link)
-			.then(data => {
-			res.json(data)
-		  })
-		});
+	router.get('/twitter', async(req, res) => {
+		var link = req.query.link
+		if (!link) return res.json({ message: 'masukan parameter Link' })
+		var hasil = await twitter(link)
+		try {
+			res.json(hasil)
+		} catch(err) {
+			console.log(err)
+			res.json({ message: 'Ups, error' })
+		}
+	})
 router.get('/igstalk', async(req, res, next) => {
 			const username = req.query.username;
 			if(!username) return res.json(loghandler.notquery)
