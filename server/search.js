@@ -1,7 +1,11 @@
 const express = require('express')
 var router = express.Router();
 //scraper
-const { pinterest, webpToMp4, covid } = require('../scraper/pinterest') 
+const {
+  pinterest,
+  webp2mp4Url,
+  covid,
+} = require("../scraper/pinterest");
 
 router.get('/google', async(req, res) => {
 	var query = req.query.query
@@ -25,15 +29,16 @@ router.get('/covid', async(req, res, next) => {
 	res.json(result)
 			  })
 			});		
-			router.get("/webp", async(req, res, next) => {
-				const path = req.query.query;    
-				if(!path) return res.json(loghandler.notquery)
-				ytPlayMp4(path)
-					.then((result) => {
-						res.json(result);
-					})
-					.catch((error) => {
-						res.json(error);
-					});
-			});
+router.get("/webptomp4", async (req, res) => {
+  var url = req.query.url;
+  if (!url) return res.json({ message: "masukan parameter query" });
+  var result = await webp2mp4Url(url);
+  try {
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.json({ message: "Ups, error" });
+  }
+});
+
 			module.exports = router
