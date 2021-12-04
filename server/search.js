@@ -29,16 +29,5 @@ router.get('/covid', async(req, res, next) => {
 	res.json(result)
 			  })
 			});		
-router.get("/webptomp4", async (req, res) => {
-  var url = req.query.url;
-  if (!url) return res.json({ message: "masukan parameter query" });
-  var result = await webp2mp4Url(url);
-  try {
-    res.json(result);
-  } catch (err) {
-    console.log(err);
-    res.json({ message: "Ups, error" });
-  }
-});
 
 			module.exports = router

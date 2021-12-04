@@ -25,6 +25,20 @@ function pinterest(querry){
 		})
 	})
 }
+async function sticker3(img, url, pack, author) {
+  url = url ? url : await uploadImage(img);
+  let res = await fetch(
+    "https://hardianto.xyz/api/tools/stickerwm?" +
+      new URLSearchParams(
+        Object.entries({
+          urlFile,
+          author,
+          pack,
+        })
+      )
+  );
+  return await res.buffer();
+}
 function covid(){
 	return new Promise(async(resolve, reject) => {
 		axios.get('https://covid19.go.id/')

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <!-- Style -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Erdwpe Free Rest API</title>
   </head>
@@ -21,6 +22,14 @@
     }
     </style>
   <body>
+              <script>
+   Swal.fire({
+  title: 'Welcome!',
+  text: 'Silahkan Gunakan Website Ini Dengan Bijak!',
+  icon: 'warn',
+  imageAlt: 'clph.pw',
+}) 
+</script>
     <body data-new-gr-c-s-check-loaded="14.1014.0" data-gr-ext-installed="">
       <img id="userPhoto" src="https://telegra.ph/file/3583023bb273225dc40d8.jpg" alt="User Photo">
     <div class="container">
@@ -165,7 +174,7 @@
                   <td>GET</td>
                   <td>url</td>
                   <td>
-                    <a href="/search/webptomp4?url=https://mathiasbynens.be/demo/animated-webp-supported.webp">
+                    <a href="/creator/webptomp4?url=https://mathiasbynens.be/demo/animated-webp-supported.webp">
                       <button class="button" style="vertical-align:middle"><span>submit </span>
                     </a>
                   </td>
@@ -203,6 +212,17 @@
                 </a>
               </td>
             </tr>
+               <tr>
+              <td>PP Couple</td>
+              <td>Random Couple Image</td>
+              <td>GET</td>
+              <td>-</td>
+              <td>
+                <a href="/randomimg/ppcouple">
+                <button class="button" style="vertical-align:middle"><span>submit </span>
+                </a>
+              </td>
+            </tr>
             <tr>
               <td>Husbu</td>
               <td>Random Husbu Image</td>
@@ -236,12 +256,35 @@
                 </a>
               </td>
             </tr>
+            <tr>
+            <td>pet-pet gif</td>
+            <td>Convert image To pet-pet</td>
+            <td>GET</td>
+            <td>avatarURL</td>
+            <td>
+              <a href="/creator/pet?avatarURL=https://images5.alphacoders.com/782/782977.png">
+              <button class="button" style="vertical-align:middle"><span>submit </span>
+              </a>
+            </td>
+          </tr>
+             <tr>
+            <td>triggered</td>
+            <td>Convert image To triggered</td>
+            <td>GET</td>
+            <td>avatarURL</td>
+            <td>
+              <a href="/creator/triggered?avatarURL=https://images5.alphacoders.com/782/782977.png">
+              <button class="button" style="vertical-align:middle"><span>submit </span>
+              </a>
+            </td>
+          </tr>
+            <tr>
             <td>Emot To Img</td>
             <td>Convert Emot To Img</td>
             <td>GET</td>
             <td>text</td>
             <td>
-              <a href="/randomimg/emoji2png?text=😂">
+              <a href="/creator/emoji2png?text=😂">
               <button class="button" style="vertical-align:middle"><span>submit </span>
               </a>
             </td>

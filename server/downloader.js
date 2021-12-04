@@ -72,13 +72,29 @@ router.get('/igstory', async(req, res, next) => {
 	})
 router.get('/igstalk', async(req, res, next) => {
 			const username = req.query.username;
-			if(!username) return res.json(loghandler.notquery)
-			igStalk(username)
+	if (!username) return res.json({ message: 'masukan parameter Username' })
+  			igStalk(username)
 			  .then((result) => {
 				res.json(result)
 			  })
 		  });
-		  
+		  router.get('/stalk/ig', async(req, res, next) => {
+  const username = req.query.username;
+  if(!username) return res.json(loghandler.notusername)
+  igStalk(username)
+    .then((data) => {
+      res.json({
+        status : true,
+        code: 200,
+        creator : `ERDWPE`,
+        result
+      });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 	router.get('/youtubedl', async(req, res, next) => {
 	const link = req.query.link;
 	if(!link) return res.json({ message: 'masukan parameter Link' })
