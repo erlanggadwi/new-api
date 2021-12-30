@@ -6,7 +6,10 @@ const {
 } = require("../scraper/pinterest");
 var { EmojiAPI } = require("emoji-api");
 var emoji = new EmojiAPI();
+const textToImage = require("text-to-image");
 const canvacord = require("canvacord");
+let cmc_api = require("cmc-info");
+let cmc = new cmc_api("a9d7891e-5946-49f0-8734-8225f8a06d36");
 
 router.get("/pet", async (param, res, next) => {
   const avatarURL = param.query.avatarURL;
@@ -18,12 +21,37 @@ router.get("/pet", async (param, res, next) => {
   res.send(animatedGif);
 });
 router.get("/triggered", async (param, res, next) => {
-  const avatarURL = param.query.avatarURL;
-  if (!avatarURL) return res.json({ message: "masukan parameter Username" });
-  let triggerd = await canvacord.Canvas.trigger(param.query.avatarURL);
+  const url = param.query.url ;
+  if (!url) return res.json({ message: "masukan parameter URL" });
+  let triggerd = await canvacord.Canvas.trigger(param.query.url );
   res.set({ "Content-Type": "image/gif" });
   res.send(triggerd);
 });
+router.get("/cmc", async (param, res, next) => {
+  const query = param.query.query;
+  if (!query) return res.json({ message: "masukan parameter Username" });
+  cmc
+    .requestCoinBySymbol(param.query.query)
+    .then((data) => {
+      console.log(data['name'])
+      console.log(data['circulating_supply'])
+      console.log(data['quote'])
+ const result = {
+        result: {
+          status: true,
+          code: 200,
+          creator: "erdwpe",
+          Name: data.name,
+          Data: data.quote,
+        },
+      };
+      res.json(result);
+       })
+    .catch((error) => {
+      console.error("error");
+    });
+});
+
 router.get("/webptomp4", async (req, res) => {
   var url = req.query.url;
   if (!url) return res.json({ message: "masukan parameter query" });
@@ -35,7 +63,18 @@ router.get("/webptomp4", async (req, res) => {
     res.json({ message: "Ups, error" });
   }
 });
-
+router.get("/ttp", async (param, res, next) => {
+  const text = param.query.text;
+  if (!text) return res.json({ message: "masukan parameter text" });
+  textToImage
+    .generate(param.query.text)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
 router.get("/emoji2png", async (req, res, next) => {
   const Emoji = req.query.text;
   if (!Emoji) return res.json(loghandler.nottext);
