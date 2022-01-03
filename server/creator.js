@@ -33,15 +33,21 @@ router.get("/cmc", async (param, res, next) => {
   cmc
     .requestCoinBySymbol(param.query.query)
     .then((data) => {
-      console.log(data['name'])
-      console.log(data['circulating_supply'])
-      console.log(data['quote'])
  const result = {
         result: {
           status: true,
           code: 200,
           creator: "erdwpe",
           Name: data.name,
+          Symbol: data.symbol,
+          Circulating_supply: data.circulating_supply,
+          Total_supply: data.total_supply,
+          Max_supply: data.max_supply,
+          Date_added: data.date_added,
+          Num_market_pairs: data.num_market_pairs,
+          Tags: data.tags,
+          Platform: data.platform,
+          Cmc_rank: data.cmc_rank,
           Data: data.quote,
         },
       };
