@@ -43,7 +43,7 @@ router.get('/igdl', async(req, res) => {
 router.get('/tiktok', async(req, res) => {
 	var url = req.query.url
 	if (!url) return res.json({ message: 'masukan parameter Link' })
-	var hasil = await tiktok(url)
+	var hasil = await tikmateApp(url)
 	try {
 		res.json(hasil)
 	} catch(err) {
